@@ -5,6 +5,15 @@ const { Model, DataTypes } = require('sequelize');
 class User extends Model {}
 
 User.init({
+
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+
+
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -27,7 +36,7 @@ User.init({
     allowNull: true,
   },
   vehicleDetails: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true,
   },
   role: {
