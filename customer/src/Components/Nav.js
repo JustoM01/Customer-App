@@ -4,7 +4,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 
-const logo = require('./logo.PNG')
 
 const Nav = () => {
 
@@ -26,9 +25,9 @@ const Nav = () => {
 
   return (
     <div>
-      <AppBar position="fixed" sx={{ backgroundColor: '#333', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)', }}>
+      <AppBar position="fixed" sx={{ backgroundColor: '#333', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)' }}>
         <Toolbar>
-            <img src={logo} style={{height:'120px', marginRight:'20px'}}  alt='logo' ></img>
+          
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#DC143C',fontFamily: 'Arial, sans-serif', fontWeight: 'bold', letterSpacing: '0.5px', textTransform: 'uppercase', fontSize:'25px' }}>
             Detail Direct
           </Typography>
@@ -67,10 +66,10 @@ const Nav = () => {
             width: '100%',
             top: '55px',
             zIndex: 1100,
-            height: '40px',
+            height: '30px',
             backdropFilter: 'blur(10px)', // Cool effect for modern look
-            borderBottom: '1px solid rgba(255, 255, 255, 0.1)', // Subtle border
-            mt:'47px'
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)', 
+           
           }}
         >
           <Typography
