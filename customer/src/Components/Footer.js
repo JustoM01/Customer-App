@@ -1,73 +1,80 @@
 import React from 'react';
-import { Box, Typography, Link, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Link, Typography, styled } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
+
+// Styled component for footer links
+const FooterLink = styled(Link)(({ theme }) => ({
+  color: 'inherit',
+  textDecoration: 'none',
+  fontSize: '16px',
+  '&:hover': {
+    textDecoration: 'underline',
+  },
+}));
+
+const QuickLink = styled(Typography)(({ theme }) => ({
+  color: 'rgb(233, 30, 99)',
+  textDecoration: 'none',
+  fontSize: '26px',
+  fontFamily: 'Oswald, sans-serif',
+}));
 
 const Footer = () => {
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'));
-
   return (
     <Box
       sx={{
-        bgcolor: '#222',
-        color: 'white',
-        p: 3,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
+
+       
+        bottom: 0,
         width: '100%',
-        borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+        textAlign: 'center', // Center align content horizontally,
+        
+     
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 1 }}>
-        <Typography
-          variant="body1"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            mb: 1,
-            fontSize: isSmallScreen ? '0.8rem' : isMediumScreen ? '1rem' : '1.2rem',
-          }}
-        >
-          <PhoneIcon sx={{ mr: 1 }} /> (913) 602-5435
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            mb: 1,
-            fontSize: isSmallScreen ? '0.8rem' : isMediumScreen ? '1rem' : '1.2rem',
-          }}
-        >
-          <EmailIcon sx={{ mr: 1 }} /> eliseo101801@gmail.com
-        </Typography>
-      </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-        <Link href="https://www.facebook.com" target="_blank" sx={{ color: 'white', mx: 1 }}>
-          <FacebookIcon sx={{ fontSize: isSmallScreen ? '1rem' : isMediumScreen ? '1.2rem' : '1.5rem' }} />
-        </Link>
-        <Link href="https://www.twitter.com" target="_blank" sx={{ color: 'white', mx: 1 }}>
-          <TwitterIcon sx={{ fontSize: isSmallScreen ? '1rem' : isMediumScreen ? '1.2rem' : '1.5rem' }} />
-        </Link>
-        <Link href="https://www.instagram.com" target="_blank" sx={{ color: 'white', mx: 1 }}>
-          <InstagramIcon sx={{ fontSize: isSmallScreen ? '1rem' : isMediumScreen ? '1.2rem' : '1.5rem' }} />
-        </Link>
-      </Box>
-      <Typography
-        variant="body2"
+      <Box
         sx={{
-          fontSize: isSmallScreen ? '0.6rem' : isMediumScreen ? '0.8rem' : '1rem',
+          display: 'flex',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          maxWidth: '1200px', // Limit the maximum width of the content
+          margin: '0 auto', // Center the box horizontally
+          bgcolor:'white',
+          borderRadius: '10px', // Rounded corners for the footer box
+          p: '20px', // Padding inside the footer box
         }}
       >
-        &copy; {new Date().getFullYear()} Detail Direct. All rights reserved.
-      </Typography>
+        <Box  >
+          <QuickLink variant="h6">Quicklinks</QuickLink>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            <li>
+              <FooterLink href="#" sx={{ display: 'block', my: 1, color:'black' }}>
+                Contact us
+              </FooterLink>
+            </li>
+            <li>
+              <FooterLink href="#" sx={{ display: 'block', my: 1 ,color:'black'}}>
+                Contact us
+              </FooterLink>
+            </li>
+            <li>
+              <FooterLink href="#" sx={{ display: 'block', my: 1 , color:'black'}}>
+                Contact us
+              </FooterLink>
+            </li>
+          </ul>
+        </Box>
+
+        <Box>
+          <FooterLink href="tel:+1234567890" sx={{ display: 'block', mb: 2, color:'black' }}>
+            <PhoneIcon sx={{ mr: 1 }} fontSize="large" /> (123) 456-7890
+          </FooterLink>
+          <FooterLink sx={{color:'black'}} href="mailto:info@example.com">
+            <EmailIcon sx={{ mr: 1 }} fontSize="large" /> info@example.com
+          </FooterLink>
+        </Box>
+      </Box>
     </Box>
   );
 };

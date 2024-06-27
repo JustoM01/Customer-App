@@ -1,40 +1,26 @@
-import React from 'react';
-import { Box, Typography, Container, useMediaQuery, useTheme } from '@mui/material';
-
-const About = () => {
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
+import React from 'react'
+import { Box,  Typography, } from '@mui/material';
+const Why = () => {
   return (
-    <Box
-      sx={{
-        bgcolor: 'whitesmoke', 
-        color: 'white', 
-        minHeight: '500px', 
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        py: 4, 
-      }}
-    >
+    <Box sx={{ height:'100%', width:'100%'}} >
+    <Typography sx={{fontSize:'2rem', color:'rgb(233, 30, 99)', fontFamily: 'Oswald, sans-serif',textAlign:'center'}} >Why Us?</Typography>
 
-      <Container sx={{color:'black'}} maxWidth="md">
-        <Typography variant="h4" sx={{fontFamily: 'Arial, sans-serif', fontWeight: 'bold', letterSpacing: '0.5px', textTransform: 'uppercase', fontSize:'25px',marginBottom:'5px', textAlign: 'center' }}>
-          About Detail Direct
-        </Typography>
-        <Typography variant="body1" sx={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold', letterSpacing: '0.5px', textTransform: 'uppercase',textAlign: 'center', fontSize: isSmallScreen ? '1rem' : '1.2rem' }}>
-          Welcome to Detail Direct, where personalized service meets exceptional auto detailing. As the sole
-          operator, I take pride in offering meticulous detailing services right here in Kc area.
-        </Typography>
-  
-        <Typography variant="body1" sx={{fontFamily: 'Arial, sans-serif', fontWeight: 'bold', letterSpacing: '0.5px', textTransform: 'uppercase', textAlign: 'center', mt: 2, fontSize: isSmallScreen ? '1rem' : '1.2rem' }}>
-          At Detail Direct, customer satisfaction is paramount. I strive to build lasting relationships with my
-          clients through transparent communication and reliable service. Your car is in good hands with [Your Name].
-        </Typography>
-      </Container>
-    </Box>
-  );
-};
+    <Typography sx={{color:'BLACK', fontFamily: 'Oswald, sans-serif',textAlign:'center'}} >     
+   Local Commitment: We're dedicated to our community, offering personalized service that meets your exact needs.
 
-export default About;
+Quality Service: Experience meticulous detailing using premium products for a stunning finish every time.
+
+Customer Satisfaction: Your happiness drives us. We listen, adapt, and deliver beyond expectations.
+
+Expertise and Trust: With years of trusted service, your vehicle is in skilled hands.
+
+Community Support: Proudly supporting local growth and prosperity.
+
+Join us at [Your Business Name] for exceptional auto detailing that's as committed to your satisfaction as it is to our community.
+</Typography>
+</Box>
+
+  )
+}
+
+export default Why
