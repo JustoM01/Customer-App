@@ -1,55 +1,70 @@
 import React from 'react';
-import { Box, Typography, Container, Grid, useMediaQuery, useTheme } from '@mui/material';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { Box, Grid, Typography, Card, CardMedia, CardContent } from '@mui/material';
+import { Zoom } from 'react-awesome-reveal';  // Import Zoom animation
+const Hero = require('./exterior.jpeg');
 
-const WhyDetailDirect = () => {
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+const services = [
+  {
+    title: 'Exterior Detailing',
+    description: 'Comprehensive exterior cleaning and polishing.',
+    image: Hero
+  },
+  {
+    title: 'Interior Detailing',
+    description: 'Thorough cleaning of interior surfaces.',
+    image: Hero
+  },
+  {
+    title: 'Engine Cleaning',
+    description: 'Deep cleaning of engine bay.',
+    image: Hero
+  },
+  {
+    title: 'Paint Correction',
+    description: 'Restoring paintwork to its original glory.',
+    image: Hero
+  }
+];
 
+const Why = () => {
   return (
-    <Box
-      sx={{
-        bgcolor: 'whitesmoke', // Background color
-        color: 'black', // Text color
-        minHeight: '500px', // Minimum height of the section
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        py: 4, // Padding on the top and bottom
-      }}
-    >
-      <Container sx={{fontFamily: 'Arial, sans-serif', fontWeight: 'bold', letterSpacing: '0.5px', textTransform: 'uppercase'}} maxWidth="md">
-        <Typography variant="h4" sx={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold', letterSpacing: '0.5px', textTransform: 'uppercase',marginBottom:'10px',textAlign: 'center' }}>
-          Why Detail Direct?
-        </Typography>
-        <Grid container spacing={4} justifyContent="center">
-          <Grid item xs={12} md={6}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-              <CheckCircleOutlineIcon sx={{ fontSize: '3rem', mr: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 'bold', fontFamily: 'Arial, sans-serif', fontSize: isSmallScreen ? '1.2rem' : '1.5rem' }}>
-                Focus on Quality
-              </Typography>
-            </Box>
-            <Typography variant="body1" sx={{ fontFamily: 'Arial, sans-serif', fontSize: isSmallScreen ? '1rem' : '1.2rem' }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae urna quis quam vehicula tristique. Donec volutpat eros nec justo vehicula, a feugiat libero convallis.
-            </Typography>
+    <Box sx={{ height: '100%', width: '100%', py: 4 }}>
+      <Typography 
+        sx={{ fontSize: '2rem', color: 'rgb(233, 30, 99)', fontFamily: 'Oswald, sans-serif', textAlign: 'center', mb: 4 }}
+      >
+        Our Services
+      </Typography>
+
+      <Grid container spacing={4} justifyContent="center">
+        {services.map((service, index) => (
+          <Grid item xs={12} sm={12} md={5} key={index}>
+            <Zoom>
+              <Card sx={{ height: '100%' }}>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={service.image}
+                  alt={service.title}
+                />
+                <CardContent>
+                  <Typography 
+                    sx={{ fontSize: '1.25rem', color: 'rgb(233, 30, 99)', fontFamily: 'Oswald, sans-serif', textAlign: 'center' }}
+                  >
+                    {service.title}
+                  </Typography>
+                  <Typography 
+                    sx={{ color: 'black', fontFamily: 'Oswald, sans-serif', textAlign: 'center' }}
+                  >
+                    {service.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Zoom>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-              <CheckCircleOutlineIcon sx={{ fontSize: '3rem', mr: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 'bold', fontFamily: 'Arial, sans-serif', fontSize: isSmallScreen ? '1.2rem' : '1.5rem' }}>
-                Customer Service
-              </Typography>
-            </Box>
-            <Typography variant="body1" sx={{ fontFamily: 'Arial, sans-serif', fontSize: isSmallScreen ? '1rem' : '1.2rem' }}>
-              Duis eget nisl vel velit tristique feugiat. Nulla facilisi. Suspendisse vel tortor ac nisi vehicula eleifend. Cras id fringilla velit. Sed vitae metus eget dui tincidunt volutpat.
-            </Typography>
-          </Grid>
-        </Grid>
-      </Container>
+        ))}
+      </Grid>
     </Box>
   );
-};
+}
 
-export default WhyDetailDirect;
+export default Why;
