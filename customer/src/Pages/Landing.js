@@ -108,12 +108,18 @@ const Landing = () => {
           </Box>
         </Grid>
 
-      {/* Why Section */}
+      {/* ratings */}
       <Grid item xs={10} sm={10} md={10}>
           <Box sx={{minHeight: '200px', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
             <Ratings/>
           </Box>
         </Grid>
+    
+
+
+
+
+    
     
         
 

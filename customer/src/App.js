@@ -2,6 +2,7 @@ import './App.css';
 import Footer from './Components/Footer';
 import Nav from './Components/Nav';
 import Landing from './Pages/Landing';
+import Quote from './Pages/Quote';
 
 import { Box ,ThemeProvider } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -16,6 +17,8 @@ function App() {
         <Box sx={{ flexGrow: 1, overflow: 'hidden' }}>
           <Routes>
     <Route path='/'  Component={Landing} ></Route>
+    <Route path='/quote'  Component={Quote} ></Route>
+          
           
           </Routes>
         </Box>
