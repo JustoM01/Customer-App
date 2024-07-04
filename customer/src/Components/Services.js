@@ -5,34 +5,30 @@ const Hero = require('./exterior.jpeg');
 
 const services = [
   {
-    title: 'Exterior Detailing',
-    description: 'Comprehensive exterior cleaning and polishing.',
+    title: 'Steam Treatment',
+    description: 'Our carpet steaming service effectively removes deep-seated dirt, stains, and allergens from your vehicle’s carpets. Using steam cleaning technology, we sanitize and refresh the carpets, leaving them clean, soft, and odor-free.',
     image: Hero
   },
   {
     title: 'Interior Detailing',
-    description: 'Thorough cleaning of interior surfaces.',
+    description: 'Experience a fresh and clean interior with our detailed interior cleaning service. We deep clean all interior surfaces, including seats, carpets, dashboard, and door panels. This service removes dirt, dust, and allergens, leaving your car’s interior spotless and rejuvenated.',
     image: Hero
   },
   {
-    title: 'Engine Cleaning',
-    description: 'Deep cleaning of engine bay.',
+    title: 'Exterior Cleaning',
+    description: 'Our exterior detailing service goes beyond a simple wash. We meticulously clean and polish every exterior surface of your vehicle, including the body, windows, wheels, and tires. This enhances the appearance and protects your car from environmental elements.',
     image: Hero
   },
-  {
-    title: 'Paint Correction',
-    description: 'Restoring paintwork to its original glory.',
-    image: Hero
-  }
+
 ];
 
-const Why = () => {
+const Services = () => {
   return (
     <Box sx={{ height: '100%', width: '100%', py: 4 }}>
       <Typography 
         sx={{ fontSize: '2rem', color: 'rgb(233, 30, 99)', fontFamily: 'Oswald, sans-serif', textAlign: 'center', mb: 4 }}
       >
-        Our Services
+      What We Offer
       </Typography>
 
       <Grid container spacing={4} justifyContent="center">
@@ -67,4 +63,4 @@ const Why = () => {
   );
 }
 
-export default Why;
+export default Services;

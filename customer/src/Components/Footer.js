@@ -2,6 +2,9 @@ import React from 'react';
 import { Box, Link, Typography, styled } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import FacebookIcon from '@mui/icons-material/Facebook'; // Example import for Facebook icon
+import YoutubeIcon from '@mui/icons-material/YouTube'
+import InstagramIcon from '@mui/icons-material/Instagram'; // Example import for Instagram icon
 
 // Styled component for footer links
 const FooterLink = styled(Link)(({ theme }) => ({
@@ -46,34 +49,63 @@ const Footer = () => {
         }}
       >
         <Box  >
+          <QuickLink variant="h6">Socials</QuickLink>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            <li>
+              <YoutubeIcon></YoutubeIcon>
+            </li>
+            <li>
+              <InstagramIcon></InstagramIcon>
+            </li>
+            <li>
+             <FacebookIcon></FacebookIcon>
+            </li>
+          </ul>
+        </Box>
+
+
+
+
+        <Box sx={{ml:'6px'}} >
           <QuickLink variant="h6">Quicklinks</QuickLink>
           <ul style={{ listStyleType: 'none', padding: 0 }}>
             <li>
               <FooterLink href="#" sx={{ display: 'block', my: 1, color:'black' }}>
-                Contact us
+                Home
               </FooterLink>
             </li>
             <li>
               <FooterLink href="#" sx={{ display: 'block', my: 1 ,color:'black'}}>
-                Contact us
+                Get a Quote
               </FooterLink>
             </li>
             <li>
               <FooterLink href="#" sx={{ display: 'block', my: 1 , color:'black'}}>
-                Contact us
+                About Us
               </FooterLink>
             </li>
           </ul>
         </Box>
 
-        <Box>
-          <FooterLink href="tel:+1234567890" sx={{ display: 'block', mb: 2, color:'black' }}>
-            <PhoneIcon sx={{ mr: 1 }} fontSize="large" /> (123) 456-7890
-          </FooterLink>
-          <FooterLink sx={{color:'black'}} href="mailto:info@example.com">
-            <EmailIcon sx={{ mr: 1 }} fontSize="large" /> info@example.com
-          </FooterLink>
+
+
+
+        
+        <Box sx={{ml:'6px'}} >
+          <QuickLink variant="h6">Contact</QuickLink>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            <li>
+              <PhoneIcon></PhoneIcon> (913-602-5435)
+            </li>
+
+            <li>
+              <EmailIcon></EmailIcon> eliseo101801@gmail.com
+            </li>
+            
+          </ul>
         </Box>
+
+       
       </Box>
     </Box>
   );

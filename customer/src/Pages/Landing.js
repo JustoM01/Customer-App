@@ -1,6 +1,6 @@
 import React from 'react';
 import About from '../Components/About';
-import Why from '../Components/Why';
+import Services from '../Components/Services';
 import Ratings from '../Components/Ratings';
 import { Box, Grid, styled, Typography } from '@mui/material';
 const Hero = require('./2Hero.mp4');
@@ -99,7 +99,7 @@ const Landing = () => {
         </Grid>
       </Grid>
 
-      {/* About and Why Sections */}
+      {/* About and services Sections */}
       <Grid container spacing={4} justifyContent="center" >
         {/* About Section */}
         <Grid item xs={10} sm={10} md={10}>
@@ -123,10 +123,10 @@ const Landing = () => {
     
         
 
-        {/* Why Section */}
+        {/* services Section */}
         <Grid item xs={10} sm={10} md={10}>
           <Box sx={{minHeight: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Why />
+            <Services />
           </Box>
         </Grid>
       </Grid>
