@@ -16,7 +16,7 @@ Expertise and Trust: With years of trusted service, your vehicle is in skilled h
 
 Community Support: Proudly supporting local growth and prosperity.
 
-Join us at [Your Business Name] for exceptional auto detailing that's as committed to your satisfaction as it is to our community.
+Join us at Detail Direct for exceptional auto detailing that's as committed to your satisfaction as it is to our community.
 </Typography>
 </Box>
 

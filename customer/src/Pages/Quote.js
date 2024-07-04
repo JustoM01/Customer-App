@@ -42,7 +42,7 @@ const Quote = () => {
     setQuote(null);
 
     try {
-      const response = await axios.post('/generate-quote', {
+      const response = await axios.post('/api/estimate/generate-quote', {
         serviceTypeId,
         vehicleType,
       });
