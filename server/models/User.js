@@ -32,10 +32,7 @@ User.init({
     type: DataTypes.STRING,
     allowNull: true,
   },
-  vehicleDetails: {
-    type: DataTypes.JSON,
-    allowNull: true,
-  },
+
   role: {
     type: DataTypes.STRING,
     defaultValue: 'customer',

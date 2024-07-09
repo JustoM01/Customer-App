@@ -3,6 +3,7 @@ import Footer from './Components/Footer';
 import Nav from './Components/Nav';
 import Landing from './Pages/Landing';
 import Quote from './Pages/Quote';
+import Booking from './Pages/Booking';
 
 import { Box ,ThemeProvider } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -18,6 +19,7 @@ function App() {
           <Routes>
     <Route path='/'  Component={Landing} ></Route>
     <Route path='/quote'  Component={Quote} ></Route>
+    <Route path='/booking'  Component={Booking} ></Route>
           
           
           </Routes>
