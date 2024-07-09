@@ -13,9 +13,18 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+
+// my route to post new booking
+// my route to post new booking
+// my route to post new booking
+
 router.post('/book', async (req, res) => {
   const { serviceName, vehicleType, customerName, customerEmail, bookingDate } = req.body;
 
+
+
+
+//   finding service by name
   try {
     const service = await ServiceType.findOne({
       where: { name: serviceName },
@@ -25,6 +34,8 @@ router.post('/book', async (req, res) => {
       return res.status(404).json({ error: 'Service type not found' });
     }
 
+
+    // new booking payload
     const newBooking = await Booking.create({
       serviceTypeId: service.id,
       vehicleType,

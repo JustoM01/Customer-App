@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import React from 'react'
 import {Box, Link, styled} from '@mui/material'
-
+import { Link as RouterLink } from 'react-router-dom'; // Import Link from react-router-dom
 
 
 
@@ -36,10 +36,11 @@ const Nav = () => {
     top: 0,
     width: '100%',
     zIndex: 1000, }}>
-<HeaderOne>Detail Direct</HeaderOne>
-  <NavLink style={{marginLeft:'6%'}}  >Services</NavLink>
-    <NavLink style={{marginLeft:'6%'}}  >Quote</NavLink>
-    <NavLink style={{marginLeft:'6%'}}  >About Us</NavLink>
+<HeaderOne component={RouterLink} to="/"  >Detail Direct</HeaderOne>
+  <NavLink component={RouterLink} to="/services"  style={{marginLeft:'3%'}}  >Services</NavLink>
+    <NavLink component={RouterLink} to="/quote"  style={{marginLeft:'2%'}}  >Quote</NavLink>
+    <NavLink component={RouterLink} to="/booking"  style={{marginLeft:'2%'}}  >Booking</NavLink>
+    <NavLink component={RouterLink} to="/sign-in"  style={{marginLeft:'2%'}}  >Sign In</NavLink>
    </Box>
   )
 }

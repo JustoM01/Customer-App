@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Typography, Grid, styled, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
+import { Box, Button, TextField, Typography, Grid, styled, MenuItem, Select, InputLabel, FormControl, Alert } from '@mui/material';
 import axios from 'axios';
 
 const HeroText = styled(Typography)({
@@ -31,22 +31,27 @@ const QuotePageContainer = styled(Box)({
 });
 
 const Quote = () => {
-  const [serviceTypeId, setServiceTypeId] = useState('');
+  const [serviceName, setServiceName] = useState('');
   const [vehicleType, setVehicleType] = useState('');
-  const [quote, setQuote] = useState(null);
+  const [email, setEmail] = useState('');
+
   const [error, setError] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setQuote(null);
+
+    setEmailSent(false);
 
     try {
       const response = await axios.post('/api/estimate/generate-quote', {
-        serviceTypeId,
+        name: serviceName,
         vehicleType,
+        email
       });
-      setQuote(response.data.newEstimate);
+      console.log(response)
+      setEmailSent(true);
     } catch (err) {
       setError(err.response.data.error);
     }
@@ -60,12 +65,24 @@ const Quote = () => {
             <HeroText variant="h2" component="h1" gutterBottom>
               Get a Quote
             </HeroText>
+            <FormControl fullWidth required sx={{ backgroundColor: 'white', borderRadius: '4px' }}>
+              <InputLabel>Service Type</InputLabel>
+              <Select
+                value={serviceName}
+                onChange={(e) => setServiceName(e.target.value)}
+                label="Service Type"
+              >
+                <MenuItem value="Basic Clean">Basic Clean</MenuItem>
+                <MenuItem value="Tire Rotation">Tire Rotation</MenuItem>
+                <MenuItem value="Brake Inspection">Brake Inspection</MenuItem>
+              </Select>
+            </FormControl>
             <TextField
-              label="Service Type ID"
+              label="Email"
               variant="outlined"
               fullWidth
-              value={serviceTypeId}
-              onChange={(e) => setServiceTypeId(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               sx={{ backgroundColor: 'white', borderRadius: '4px' }}
             />
@@ -88,10 +105,11 @@ const Quote = () => {
             >
               Get Quote
             </Button>
-            {quote && (
-              <Typography sx={{ color: 'white', mt: 2, textAlign: 'center' }}>
-                Estimated Cost: ${quote.estimatedCost}
-              </Typography>
+          
+            {emailSent && (
+              <Alert severity="success" sx={{ mt: 2, width: '100%', textAlign: 'center' }}>
+                Quote has been sent to your email!
+              </Alert>
             )}
             {error && (
               <Typography sx={{ color: 'red', mt: 2, textAlign: 'center' }}>
