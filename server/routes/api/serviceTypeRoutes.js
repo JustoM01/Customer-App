@@ -20,5 +20,15 @@ router.post('/', async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   });
+
+
+
+  router.get('/services', async(req,res)=>{
+    try{
+    const allServices = await serviceType.findAll({});
+    res.status(200).json(allServices)}catch(err){
+      res.status.json(err)
+    }
+  })
   
   module.exports = router;

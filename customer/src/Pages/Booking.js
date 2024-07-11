@@ -8,12 +8,16 @@ const BookingForm = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   gap: '16px',
   padding: '40px',
-  backgroundColor: 'rgba(51, 51, 51, 0.85)',
-  borderRadius: '10px',
-  boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.6)',
+  backgroundColor: 'rgba(255, 255, 255, 0.85)',
+  borderRadius: '15px',
+  boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.5)',
+  backdropFilter: 'blur(10px)',
   [theme.breakpoints.down('sm')]: {
     padding: '30px',
   },
+  '& .MuiTextField-root, .MuiFormControl-root': {
+    marginBottom: '20px',
+  }
 }));
 
 const BookingPageContainer = styled(Box)({
@@ -21,8 +25,15 @@ const BookingPageContainer = styled(Box)({
   justifyContent: 'center',
   alignItems: 'center',
   minHeight: '100vh',
-  backgroundColor: 'rgba(51, 51, 51, 0.15)',
+ marginTop:'14px',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
   padding: '30px',
+  animation: 'fade-in 1.5s ease-in-out',
+  '@keyframes fade-in': {
+    '0%': { opacity: 0 },
+    '100%': { opacity: 1 },
+  }
 });
 
 const StyledTextField = styled(TextField)({
@@ -42,6 +53,7 @@ const StyledButton = styled(Button)({
   padding: '12px',
   marginTop: '20px',
   fontSize: '1rem',
+  transition: 'background-color 0.3s ease',
   '&:hover': {
     backgroundColor: 'rgb(200, 20, 80)',
   },
@@ -101,7 +113,7 @@ const Booking = () => {
               Book a Service
             </Typography>
             
-            <StyledFormControl fullWidth required sx={{ marginBottom: '20px' }}>
+            <StyledFormControl fullWidth required>
               <InputLabel>Sign In or Continue as Guest</InputLabel>
               <Select
                 value={option}

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Typography, Grid, styled, MenuItem, Select, InputLabel, FormControl, Alert } from '@mui/material';
+import { Box, Button, TextField, Typography, Grid, styled, MenuItem, Select, InputLabel, FormControl, Alert, Paper } from '@mui/material';
 import axios from 'axios';
 
+
+
+// prestyled typography i made
 const HeroText = styled(Typography)({
   color: 'rgb(233, 30, 99)',
   fontFamily: 'Oswald, sans-serif',
@@ -16,21 +19,43 @@ const QuoteForm = styled(Box)({
   alignItems: 'center',
   gap: '16px',
   padding: '30px',
-  backgroundColor: 'rgba(51, 51, 51, 0.8)',
+  backgroundColor: 'rgba(255, 255, 255, 0.85)',
   borderRadius: '8px',
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)',
 });
 
 const QuotePageContainer = styled(Box)({
+  marginTop:'37px',
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   minHeight: '100vh',
-  backgroundColor: 'rgba(51, 51, 51, 0.1)',
-  padding: '20px',
+  backgroundImage: 'url(/path/to/your/background.jpg)', // Replace with your background image
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  padding: '30px',
+  animation: 'fade-in 1.5s ease-in-out',
+  '@keyframes fade-in': {
+    '0%': { opacity: 0 },
+    '100%': { opacity: 1 },
+  }
 });
 
+const InfoSection = styled(Paper)({
+  padding: '20px',
+  marginBottom: '30px',
+  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  borderRadius: '8px',
+  boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
+});
+
+
+
 const Quote = () => {
+
+
+  // setting usestate dynamic varaiables to save user data for api call
   const [serviceName, setServiceName] = useState('');
   const [vehicleType, setVehicleType] = useState('');
   const [email, setEmail] = useState('');
@@ -41,7 +66,6 @@ const Quote = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
     setEmailSent(false);
 
     try {
@@ -50,6 +74,9 @@ const Quote = () => {
         vehicleType,
         email
       });
+
+      // after successful api call update email var and console response
+            // after successful api call update email var and console response
       console.log(response)
       setEmailSent(true);
     } catch (err) {
@@ -59,12 +86,20 @@ const Quote = () => {
 
   return (
     <QuotePageContainer>
+      <HeroText variant="h2" component="h1" gutterBottom>
+        Get a Quote
+      </HeroText>
+      <InfoSection>
+        <Typography variant="h5" gutterBottom>
+          Why Choose Our Services?
+        </Typography>
+        <Typography variant="body1">
+          We offer a variety of automotive services to meet your needs. Our team of experts is dedicated to providing top-quality service at affordable prices. Contact us today to get a quote for the service you need!
+        </Typography>
+      </InfoSection>
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={10} md={8} lg={6}>
           <QuoteForm component="form" onSubmit={handleSubmit}>
-            <HeroText variant="h2" component="h1" gutterBottom>
-              Get a Quote
-            </HeroText>
             <FormControl fullWidth required sx={{ backgroundColor: 'white', borderRadius: '4px' }}>
               <InputLabel>Service Type</InputLabel>
               <Select
@@ -106,6 +141,11 @@ const Quote = () => {
               Get Quote
             </Button>
           
+
+          {/* dynamic renders to display */}
+          
+          {/* dynamic renders to display */}
+          {/* dynamic renders to display */}
             {emailSent && (
               <Alert severity="success" sx={{ mt: 2, width: '100%', textAlign: 'center' }}>
                 Quote has been sent to your email!
@@ -119,6 +159,7 @@ const Quote = () => {
           </QuoteForm>
         </Grid>
       </Grid>
+   
     </QuotePageContainer>
   );
 };
