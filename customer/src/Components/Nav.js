@@ -40,7 +40,7 @@ const Nav = () => {
   <NavLink component={RouterLink} to="/services"  style={{marginLeft:'3%'}}  >Services</NavLink>
     <NavLink component={RouterLink} to="/quote"  style={{marginLeft:'2%'}}  >Quote</NavLink>
     <NavLink component={RouterLink} to="/booking"  style={{marginLeft:'2%'}}  >Booking</NavLink>
-    <NavLink component={RouterLink} to="/sign-in"  style={{marginLeft:'2%'}}  >Sign In</NavLink>
+    <NavLink component={RouterLink} to="/login"  style={{marginLeft:'2%'}}  >LogIn</NavLink>
    </Box>
   )
 }

@@ -4,10 +4,13 @@ import Nav from './Components/Nav';
 import Landing from './Pages/Landing';
 import Quote from './Pages/Quote';
 import Booking from './Pages/Booking';
+import Login from './Pages/Login';
 
 import { Box ,ThemeProvider } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import theme from './theme'; // ImportS the custom theme
+import OurServices from './Pages/OurServices';
+import SignUp from './Pages/Signup';
 
 function App() {
   return (
@@ -20,6 +23,10 @@ function App() {
     <Route path='/'  Component={Landing} ></Route>
     <Route path='/quote'  Component={Quote} ></Route>
     <Route path='/booking'  Component={Booking} ></Route>
+    <Route path='/login'  Component={Login} ></Route>
+    <Route path='/services'  Component={OurServices} ></Route>
+    <Route path='/signup'  Component={SignUp} ></Route>
+          
           
           
           </Routes>
