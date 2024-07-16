@@ -54,6 +54,13 @@ const ScrollableDiv = styled(Box)({
 });
 
 const OurServices = () => {
+
+
+
+  //  usestate vars used to store services after api call
+  
+  //  usestate vars used to store services after api call
+  //  usestate vars used to store services after api call
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState('');
   const [filteredServices, setFilteredServices] = useState([]);
@@ -77,6 +84,14 @@ const OurServices = () => {
     filterServices(event.target.value);
   };
 
+
+
+
+  // helper function used to update services if one selected or not
+  
+  // helper function used to update services if one selected or not
+  // helper function used to update services if one selected or not
+
   const filterServices = (selectedService) => {
     if (selectedService === '') {
       setFilteredServices(services);
@@ -89,7 +104,7 @@ const OurServices = () => {
   return (
     <ServicePageContainer>
       <FiltersContainer>
-        <Typography variant="h4" sx={{ fontFamily: 'Oswald, sans-serif', color: 'rgb(233, 30, 99)', marginTop: '30px' }} gutterBottom>
+        <Typography variant="h4" sx={{ fontFamily: 'Oswald, sans-serif', color: 'rgb(233, 30, 99)', marginTop: '45px' }} gutterBottom>
           Select a Service
         </Typography>
         <FormControl fullWidth sx={{ marginBottom: '20px' }}>
@@ -99,7 +114,7 @@ const OurServices = () => {
             onChange={handleServiceChange}
             label="Service"
           >
-            <MenuItem value="">All Services</MenuItem>
+            <MenuItem  value="">All Services</MenuItem>
             {services.map((service) => (
               <MenuItem key={service.id} value={service.id}>
                 {service.name}

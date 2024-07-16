@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Grid, styled, Alert } from '@mui/material';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 
 const HeroText = styled(Typography)({
   color: 'rgb(233, 30, 99)',
@@ -24,25 +23,25 @@ const LoginForm = styled(Box)({
 });
 
 const LoginPageContainer = styled(Box)({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '100vh',
- 
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    padding: '30px',
-    animation: 'fade-in 1.5s ease-in-out',
-    '@keyframes fade-in': {
-      '0%': { opacity: 0 },
-      '100%': { opacity: 1 },
-    }
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  minHeight: '100vh',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  padding: '30px',
+  animation: 'fade-in 1.5s ease-in-out',
+  '@keyframes fade-in': {
+    '0%': { opacity: 0 },
+    '100%': { opacity: 1 },
+  }
 });
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Use useNavigate hook to get navigation function
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -50,11 +49,13 @@ const Login = () => {
 
     try {
       const response = await axios.post('/api/user/sign-in', { email, password });
-      // after good api call log response
-            // after good api call log response
-                  // after good api call log response
       console.log('Login Response:', response.data);
-      
+
+      // Store the token in local storage
+      localStorage.setItem('token', response.data.token);
+
+      // Redirect to the dashboard
+      navigate('/dashboard');
     } catch (err) {
       console.error('Login Error:', err.response?.data);
       setError(err.response?.data?.error || 'Failed to log in');

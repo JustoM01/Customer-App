@@ -3,6 +3,10 @@ import { Box, Button, TextField, Typography, Grid, styled, Alert } from '@mui/ma
 import axios from 'axios'; 
 import { Link } from 'react-router-dom';
 
+
+
+// prestyled typograhpy i made
+
 const HeroText = styled(Typography)({
   color: 'rgb(233, 30, 99)',
   fontFamily: 'Oswald, sans-serif',
@@ -20,6 +24,7 @@ const SignUpForm = styled(Box)({
   backgroundColor: 'rgba(255, 255, 255, 0.85)',
   borderRadius: '8px',
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)',
+  marginTop:'45px'
 });
 
 const SignUpPageContainer = styled(Box)({
@@ -64,7 +69,7 @@ const SignUp = () => {
   };
 
   return (
-    <SignUpPageContainer>
+    <SignUpPageContainer  >
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={10} md={8} lg={6}>
           <SignUpForm component="form" onSubmit={handleSignUp}>
