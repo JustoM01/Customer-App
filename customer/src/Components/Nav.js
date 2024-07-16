@@ -32,8 +32,9 @@ const NavLink = styled(Link)(({ theme }) => ({
 const Nav = () => {
   return (                              // ALIGNS ITEMS IN MIDDLE W SPACE IN BEWTEEN THEM THEN SOME PADDING 
    <Box sx={{display:'flex',alignItems:'center',    padding: '10px 30px',    bgcolor: '#333',
-    color: 'white',height:'7vh',position: 'fixed', 
+    color: 'white',height:{xs:'9vh',sm:'7v',md:'7vh'},position: 'fixed', 
     top: 0,
+    
     width: '100%',
     zIndex: 1000, }}>
 <HeaderOne component={RouterLink} to="/"  >Detail Direct</HeaderOne>

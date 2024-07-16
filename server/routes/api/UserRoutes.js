@@ -1,6 +1,16 @@
 const router = require('express').Router();
 const User = require('../../models/User');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const authenticateToken = require('../../jwt')
+// Loads environment variables from my env file
+require('dotenv').config();
+
+// setting var for my env secret password
+const secretKey = process.env.JWT_SECRET;
+
+
 router.post('/', async (req, res) => {
 
     // destrcutres req from body
@@ -24,6 +34,10 @@ router.post('/', async (req, res) => {
     }
   });
 
+
+
+
+  
 router.post('/sign-in', async(req, res)=>{
 
 const {email, password} = req.body
@@ -45,8 +59,13 @@ try {
     return res.status(401).json({ error: 'Invalid password' });
   }
 
+
+  // Password is valid, generate a token
+  const token = jwt.sign({ id: existingUser.id, email: existingUser.email }, secretKey, { expiresIn: '1h' });
+
+
   // Password is valid, login successful
-  res.status(200).json({ message: 'Login successful!', user: existingUser });
+  res.status(200).json({ message: 'Login successful!', user: existingUser , token});
 } catch (err) {
   console.error('Error:', err);
   res.status(500).json({ error: 'Internal server error' });
@@ -55,8 +74,10 @@ try {
 })
 
 
-
-router.get('/users', async(req,res)=>{
+// jswt protected route
+// jswt protected route
+// jswt protected route
+router.get('/users',authenticateToken, async(req,res)=>{
   try{
  const allUsers = await   User.findAll({})
     res.status(201).json(allUsers)

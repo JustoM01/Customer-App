@@ -86,7 +86,7 @@ const Quote = () => {
 
   return (
     <QuotePageContainer>
-      <HeroText variant="h2" component="h1" gutterBottom>
+      <HeroText sx={{marginTop:'13px'}} variant="h2" component="h1" gutterBottom>
         Get a Quote
       </HeroText>
       <InfoSection>
