@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import theme from './theme'; // ImportS the custom theme
 import OurServices from './Pages/OurServices';
 import SignUp from './Pages/Signup';
+import Dashboard from './Pages/Dashboard';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
     <Route path='/login'  Component={Login} ></Route>
     <Route path='/services'  Component={OurServices} ></Route>
     <Route path='/signup'  Component={SignUp} ></Route>
+    <Route path='/dashboard'  Component={Dashboard} ></Route>
           
           
           

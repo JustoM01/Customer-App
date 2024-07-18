@@ -54,6 +54,21 @@ const Login = () => {
       // Store the token in local storage
       localStorage.setItem('token', response.data.token);
 
+
+          // Fetch user data after successful login
+          const userResponse = await axios.get('/api/user/me', {
+            headers: {
+              Authorization: `Bearer ${response.data.token}` // Attaches token in the request header
+            }
+          });
+      
+
+          // logging user data after i get it
+          console.log('User Data:', userResponse.data); 
+    
+
+
+
       // Redirect to the dashboard
       navigate('/dashboard');
     } catch (err) {
