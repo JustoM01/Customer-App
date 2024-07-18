@@ -15,8 +15,29 @@ router.post('/', async (req, res) => {
 
     // destrcutres req from body
     const { name, email, password, phoneNumber, address,  } = req.body;
+
+
+
+
+
   
+
     try {
+
+    // Check if email already exists
+    const existingUser = await User.findOne({ where: { email } });
+      if (existingUser) {
+        return res.status(409).json({ error: 'Email already registered' });
+      }
+  
+ // Check if phone number exists
+   const existingUserByPhoneNumber = await User.findOne({ where: { phoneNumber } });
+    if (existingUserByPhoneNumber) {
+      return res.status(409).json({ error: 'Phone number already registered' });
+    }
+
+
+
       const newUser = await User.create({
         name,
         email,
@@ -37,7 +58,7 @@ router.post('/', async (req, res) => {
 
 
 
-  
+
 router.post('/sign-in', async(req, res)=>{
 
 const {email, password} = req.body
@@ -86,6 +107,25 @@ router.get('/users',authenticateToken, async(req,res)=>{
   }
 })
 
+
+
+
+
+// Route to get logged-in user data
+router.get('/me', authenticateToken, async (req, res) => {
+  try {
+    const user = await User.findByPk(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
 

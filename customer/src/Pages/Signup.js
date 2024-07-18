@@ -65,6 +65,13 @@ const SignUp = () => {
     } catch (err) {
       console.error('Sign Up Error:', err.response?.data);
       setError(err.response?.data?.error || 'Failed to sign up');
+
+      // consitional error setup w backend erro if 409 conflict
+          // consitional error setup w backend erro if 409 conflict
+      if (err.response && err.response.status === 409 ) {
+        const errorMessage = err.response.data.error || 'Conflict error occurred. Please use different credentials.';
+        setError(errorMessage);
+      } 
     }
   };
 
