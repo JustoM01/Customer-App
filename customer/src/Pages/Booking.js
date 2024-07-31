@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { Box, Button, TextField, Typography, Grid, styled, FormControl, InputLabel, Select, MenuItem, Alert } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, Button, Typography, Grid, styled, FormControl, InputLabel, Select, MenuItem, Alert ,TextField} from '@mui/material';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const BookingForm = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -25,7 +27,7 @@ const BookingPageContainer = styled(Box)({
   justifyContent: 'center',
   alignItems: 'center',
   minHeight: '100vh',
- marginTop:'14px',
+  marginTop: '64px',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   padding: '30px',
@@ -34,11 +36,6 @@ const BookingPageContainer = styled(Box)({
     '0%': { opacity: 0 },
     '100%': { opacity: 1 },
   }
-});
-
-const StyledTextField = styled(TextField)({
-  backgroundColor: 'white',
-  borderRadius: '5px',
 });
 
 const StyledFormControl = styled(FormControl)({
@@ -59,16 +56,68 @@ const StyledButton = styled(Button)({
   },
 });
 
+
+
+
+
+
+
+const ResponsiveDatePickerContainer = styled(Box)(({ theme }) => ({
+  width: '100%',
+  maxWidth: '600px',
+  margin: '0 auto',
+  '& .react-datepicker': {
+    width: '100%',
+  },
+  '& .react-datepicker__triangle': {
+    display: 'none',
+  },
+  '& .react-datepicker__header': {
+    backgroundColor: 'rgb(233, 30, 99)', // Match your theme color
+    borderBottom: 'none',
+  },
+  '& .react-datepicker__day--selected': {
+    backgroundColor: 'rgb(233, 30, 99)',
+    color: 'white',
+  },
+  [theme.breakpoints.down('xs')]: {
+    '& .react-datepicker': {
+      fontSize: '0.875rem', // Adjust font size for smaller screens
+    },
+  },
+}));
+
 const Booking = () => {
   const [option, setOption] = useState('');
   const [serviceName, setServiceName] = useState('');
   const [vehicleType, setVehicleType] = useState('');
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
-  const [bookingDate, setBookingDate] = useState('');
+  const [bookingDate, setBookingDate] = useState(null);
   const [bookingResult, setBookingResult] = useState(null);
   const [error, setError] = useState('');
+  const [bookedDates, setBookedDates] = useState([]);
 
+  useEffect(() => {
+    const fetchBookedDates = async () => {
+      try {
+        const response = await axios.get('/api/booking/booked-dates');
+        setBookedDates(response.data.bookedDates.map(date => new Date(date)));
+      } catch (err) {
+        console.error('Failed to fetch booked dates:', err);
+      }
+    };
+
+    fetchBookedDates();
+  }, []);
+
+
+
+
+  // submit function to make api call 
+
+ // submit function to make api call 
+   // submit function to make api call 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -84,6 +133,9 @@ const Booking = () => {
       });
 
       console.log('Booking API Response:', response.data); // Log the entire API response
+
+
+      // after res set setBookingResult to store data
       setBookingResult(response.data.newBooking);
     } catch (err) {
       console.error('Error booking service:', err);
@@ -104,15 +156,27 @@ const Booking = () => {
     return formattedDate;
   };
 
+  const isDateTaken = (date) => {
+    return bookedDates.some(bookedDate => bookedDate.getTime() === date.getTime());
+  };
+
   return (
     <BookingPageContainer>
+
+
+      {/* gird item and conatiner alyout helps w spacing attributes and responsive */}
       <Grid container justifyContent="center">
-        <Grid item xs={12} sm={10} md={8} lg={6}>
+      <Grid item xs={12} sm={10} md={8} lg={6}>
+
+{/* 
+          api call func handleSubmit passed after form submission */}
+          {/* 
+          api call func handleSubmit passed after form submission */}
           <BookingForm component="form" onSubmit={handleSubmit}>
             <Typography variant="h2" component="h1" gutterBottom style={{ color: 'rgb(233, 30, 99)', fontFamily: 'Oswald, sans-serif', fontSize: '2.5rem', textAlign: 'center', marginBottom: '25px' }}>
               Book a Service
             </Typography>
-            
+
             <StyledFormControl fullWidth required>
               <InputLabel>Sign In or Continue as Guest</InputLabel>
               <Select
@@ -127,7 +191,7 @@ const Booking = () => {
 
             {option === 'guest' && (
               <>
-                <StyledTextField
+                <TextField
                   label="Your Name"
                   variant="outlined"
                   fullWidth
@@ -135,7 +199,7 @@ const Booking = () => {
                   onChange={(e) => setCustomerName(e.target.value)}
                   required
                 />
-                <StyledTextField
+                <TextField
                   label="Your Email"
                   variant="outlined"
                   fullWidth
@@ -145,19 +209,20 @@ const Booking = () => {
                 />
               </>
             )}
-
-            <StyledTextField
-              label="Booking Date and Time"
-              type="datetime-local"
-              variant="outlined"
-              fullWidth
-              value={bookingDate}
-              onChange={(e) => setBookingDate(e.target.value)}
-              required
-              InputLabelProps={{
-                shrink: true,
-              }}
+          <ResponsiveDatePickerContainer>
+            <DatePicker
+              selected={bookingDate}
+              onChange={(date) => setBookingDate(date)}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={30}
+              dateFormat="MMMM d, yyyy h:mm aa"
+              minDate={new Date()}
+              filterDate={(date) => !isDateTaken(date)}
+              inline
+              sx
             />
+            </ResponsiveDatePickerContainer>
             <StyledFormControl fullWidth required>
               <InputLabel>Service Name</InputLabel>
               <Select

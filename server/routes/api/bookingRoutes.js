@@ -90,4 +90,27 @@ router.post('/book', async (req, res) => {
   }
 });
 
+
+
+
+
+
+// Route to fetch booked dates
+router.get('/booked-dates', async (req, res) => {
+  try {
+    const bookings = await Booking.findAll({
+      attributes: ['bookingDate'],
+    });
+
+    const bookedDates = bookings.map(booking => booking.bookingDate);
+    res.status(200).json({ bookedDates });
+  } catch (err) {
+    console.error('Error fetching booked dates:', err);
+    res.status(500).json({ error: 'Failed to fetch booked dates' });
+  }
+});
+
+
+
+
 module.exports = router;
