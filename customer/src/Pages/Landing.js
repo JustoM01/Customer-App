@@ -1,43 +1,53 @@
 import React from 'react';
-import About from '../Components/About';
 import Services from '../Components/Services';
 import Ratings from '../Components/Ratings';
-import { Box, Grid, styled, Typography } from '@mui/material';
+import { Box, Grid, styled, Typography, Button } from '@mui/material';
+
 const Hero = require('./2Hero.mp4');
 
+// Styled component for hero text
 const HeroText = styled(Typography)(({ theme }) => ({
-  color: 'rgb(233, 30, 99)',
+color:'rgb(233, 30, 99)',
   fontFamily: 'Oswald, sans-serif',
   fontSize: '3rem',
+  textAlign: 'center',
+  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)', // Added text shadow for readability
   [theme.breakpoints.down('sm')]: {
     fontSize: '2rem',
   },
-  textAlign: 'center'
 }));
 
-const SubtitleText = styled(Typography)(({ theme }) => ({
-  color: 'white',
-  fontFamily: 'Oswald, sans-serif',
-  fontSize: '1.5rem',
-  [theme.breakpoints.down('sm')]: {
-    fontSize: '1.25rem',
-  },
-  textAlign: 'center'
+// Styled component for overlay
+const Overlay = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))', // Gradient overlay
+  display: 'flex',
+  flexDirection: 'column', // Stack text and button vertically
+  justifyContent: 'center',
+  alignItems: 'center',
+  textAlign: 'center',
+  padding: '0 20px', // Padding for responsiveness
 }));
 
-const BodyText = styled(Typography)(({ theme }) => ({
+// Styled component for call-to-action button
+const CTAButton = styled(Button)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  backgroundColor: 'rgb(233, 30, 99)',
   color: 'white',
   fontFamily: 'Oswald, sans-serif',
-  fontSize: '1.125rem',
-  [theme.breakpoints.down('sm')]: {
-    fontSize: '0.875rem',
+  fontSize: '1rem',
+  '&:hover': {
+    backgroundColor: 'rgb(203, 27, 87)',
   },
-  textAlign: 'center'
 }));
 
 const Landing = () => {
   return (
-    <Box sx={{ minHeight: '100vh', position: 'relative', bgcolor:' rgba(51, 51, 51, 0.1)' , mt:'20px'}}>
+    <Box sx={{ minHeight: '100vh', position: 'relative', bgcolor: 'rgba(51, 51, 51, 0.1)', mt: '20px' }}>
       
       {/* Hero Section */}
       <Grid container justifyContent="center">
@@ -63,74 +73,40 @@ const Landing = () => {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                opacity:'70%'
+                opacity: '0.7', // Slightly adjusted opacity for better visibility
               }}
             />
-            <Box
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-              
-                
-                borderRadius: '6%',
-                width: { xs: '80%', sm: '70%', md: '60%' },
-                textAlign: 'center',
-                height: { xs: '40%', sm: '40%', md: '55%' },
-                p: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
+            <Overlay>
               <HeroText variant="h2" component="h1" gutterBottom>
-                Detail Direct
+                DETAIL DIRECT
               </HeroText>
-              <SubtitleText variant="h4" gutterBottom>
-                Your trusted partner for quality auto detailing
-              </SubtitleText>
-              <BodyText variant="body2" gutterBottom>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum tortor ligula.
-              </BodyText>
-            </Box>
+              <Typography variant="h6" sx={{ color: 'white', mt: 1, mr:2 }}>
+                Experience the Best in Car Detailing
+              </Typography>
+              <CTAButton variant="contained" href="#">
+                Books
+              </CTAButton>
+            </Overlay>
           </Box>
         </Grid>
       </Grid>
 
       {/* About and services Sections */}
-      <Grid container spacing={4} justifyContent="center" >
-        {/* About Section */}
+      <Grid container spacing={4} justifyContent="center">
+        {/* Ratings */}
+        <Grid item xs={10} sm={10} md={10}>
+          <Box sx={{ minHeight: '200px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Ratings />
+          </Box>
+        </Grid>
+
+        {/* Services Section */}
         <Grid item xs={10} sm={10} md={10}>
           <Box sx={{ minHeight: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <About />
-          </Box>
-        </Grid>
-
-      {/* ratings */}
-      <Grid item xs={10} sm={10} md={10}>
-          <Box sx={{minHeight: '200px', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-            <Ratings/>
-          </Box>
-        </Grid>
-    
-
-
-
-
-    
-    
-        
-
-        {/* services Section */}
-        <Grid item xs={10} sm={10} md={10}>
-          <Box sx={{minHeight: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Services />
           </Box>
         </Grid>
       </Grid>
-
     </Box>
   );
 }

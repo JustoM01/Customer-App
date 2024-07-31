@@ -11,6 +11,18 @@ require('dotenv').config();
 const secretKey = process.env.JWT_SECRET;
 
 
+// Password validation function
+const validatePassword = (password) => {
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}$/;
+  return passwordRegex.test(password);
+};
+
+
+
+
+// ROUTE FOR NEW USER
+// ROUTE FOR NEW USER
+// ROUTE FOR NEW USER
 router.post('/', async (req, res) => {
 
     // destrcutres req from body
@@ -23,6 +35,16 @@ router.post('/', async (req, res) => {
   
 
     try {
+
+
+
+    // Validate password
+    if (!validatePassword(password)) {
+      return res.status(400).json({ error: 'Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character.' });
+    }
+
+
+
 
     // Check if email already exists
     const existingUser = await User.findOne({ where: { email } });
@@ -68,6 +90,8 @@ try {
     return res.status(400).json({ error: 'Email and password are required' });
   }
 
+
+  // finding by email
   const existingUser = await User.findOne({ where: { email } });
 
   if (!existingUser) {

@@ -24,6 +24,7 @@ const ServicePageContainer = styled(Box)({
   backgroundColor: '#f0f0f0',
   padding: '20px',
   paddingTop: '40px',
+  marginTop:'20px'
 });
 
 const FiltersContainer = styled(Box)(({ theme }) => ({

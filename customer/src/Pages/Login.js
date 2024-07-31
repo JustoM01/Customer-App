@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Grid, styled, Alert } from '@mui/material';
 import axios from 'axios';
+
+
+// link and usenav to help redirect and nav
 import { Link, useNavigate } from 'react-router-dom';
 
 const HeroText = styled(Typography)({
@@ -81,6 +84,10 @@ const Login = () => {
     <LoginPageContainer>
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={10} md={8} lg={6}>
+{/* 
+          passes api func to form */}
+          {/* 
+          passes api func to form */}
           <LoginForm component="form" onSubmit={handleLogin}>
             <HeroText variant="h2" component="h1" gutterBottom>
               Login
