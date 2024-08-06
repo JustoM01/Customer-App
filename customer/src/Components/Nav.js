@@ -26,7 +26,7 @@ const Nav = () => {
   };
 
   const menuItems = (
-    <Box sx={{ width: '100%', height: '100%', bgcolor: '#333', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+    <Box sx={{ width: '100%', height: '100%', bgcolor: '#333',   fontFamily: 'Oswald, sans-serif',color:'white',display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <IconButton onClick={toggleDrawer(false)} sx={{ color: 'white', position: 'absolute', top: 20, right: 20 }}>
         <CloseIcon />
       </IconButton>
@@ -74,7 +74,7 @@ const Nav = () => {
             anchor="right"
             open={drawerOpen}
             onClose={toggleDrawer(false)}
-            sx={{ '& .MuiDrawer-paper': { width: '100%', height: '100%' } }}
+            sx={{ '& .MuiDrawer-paper': { width: '100%', height: '100%',   color:'red' } }}
           >
             {menuItems}
           </Drawer>

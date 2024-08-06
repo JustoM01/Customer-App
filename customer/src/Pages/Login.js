@@ -58,16 +58,16 @@ const Login = () => {
       localStorage.setItem('token', response.data.token);
 
 
-          // Fetch user data after successful login
-          const userResponse = await axios.get('/api/user/me', {
-            headers: {
-              Authorization: `Bearer ${response.data.token}` // Attaches token in the request header
-            }
-          });
+          // // Fetch user data after successful login
+          // const userResponse = await axios.get('/api/user/me', {
+          //   headers: {
+          //     Authorization: `Bearer ${response.data.token}` // Attaches token in the request header
+          //   }
+          // });
       
 
-          // logging user data after i get it
-          console.log('User Data:', userResponse.data); 
+          // // logging user data after i get it
+          // console.log('User Data:', userResponse.data); 
     
 
 
@@ -94,6 +94,7 @@ const Login = () => {
             </HeroText>
             <TextField
               label="Email"
+                aria-label="Enter your email"
               variant="outlined"
               fullWidth
               value={email}
@@ -103,6 +104,7 @@ const Login = () => {
             />
             <TextField
               label="Password"
+                   aria-label="Enter your password"
               variant="outlined"
               type="password"
               fullWidth

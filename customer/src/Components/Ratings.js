@@ -8,16 +8,16 @@ import GroupIcon from '@mui/icons-material/Group';
 
 const Ratings = () => {
   return (
-    <Box sx={{ py: 4, px: 2, bgcolor: '#f4f4f4' }}>
-      <Typography variant="h4" sx={{ textAlign: 'center', mb: 4, fontFamily: 'Oswald, sans-serif', color: 'rgb(233, 30, 99)' }}>
+    <Box  component="section" sx={{ py: 4, px: 2, bgcolor: '#f4f4f4' }}>
+      <Typography variant="h3" sx={{ textAlign: 'center', mb: 4, fontFamily: 'Oswald, sans-serif', color: 'rgb(233, 30, 99)' }}>
         Why Us?
       </Typography>
 
-      <Grid container spacing={4} justifyContent="center">
+      <Grid container spacing={8} justifyContent="center">
         <Grid item xs={12} sm={6} md={4}>
-          <Paper sx={{ p: 3, textAlign: 'center', height: '100%', borderRadius: '10px', boxShadow: 3 }}>
-            <LocalOfferIcon sx={{ fontSize: 48, color: 'rgb(233, 30, 99)' }} />
-            <Typography variant="h6" sx={{ mt: 2, mb: 1, fontFamily: 'Oswald, sans-serif' }}>
+          <Paper   component="article" sx={{ p: 3, textAlign: 'center', height: '100%', borderRadius: '10px', boxShadow: 3 }}>
+            <LocalOfferIcon       aria-label="Local Commitment Icon" sx={{ fontSize: 48, color: 'rgb(233, 30, 99)' }} />
+            <Typography variant="h5" sx={{ mt: 2, mb: 1, fontFamily: 'Oswald, sans-serif' }}>
               Local Commitment
             </Typography>
             <Typography sx={{ textAlign: 'center', fontFamily: 'Roboto, sans-serif' }}>
@@ -27,9 +27,9 @@ const Ratings = () => {
         </Grid>
 
         <Grid item xs={12} sm={6} md={4}>
-          <Paper sx={{ p: 3, textAlign: 'center', height: '100%', borderRadius: '10px', boxShadow: 3 }}>
-            <EmojiEventsIcon sx={{ fontSize: 48, color: 'rgb(233, 30, 99)' }} />
-            <Typography variant="h6" sx={{ mt: 2, mb: 1, fontFamily: 'Oswald, sans-serif' }}>
+          <Paper  component="article" sx={{ p: 3, textAlign: 'center', height: '100%', borderRadius: '10px', boxShadow: 3 }}>
+            <EmojiEventsIcon        aria-label="Quality Service Icon" sx={{ fontSize: 48, color: 'rgb(233, 30, 99)' }} />
+            <Typography variant="h5" sx={{ mt: 2, mb: 1, fontFamily: 'Oswald, sans-serif' }}>
               Quality Service
             </Typography>
             <Typography sx={{ textAlign: 'center', fontFamily: 'Roboto, sans-serif' }}>
@@ -39,9 +39,9 @@ const Ratings = () => {
         </Grid>
 
         <Grid item xs={12} sm={6} md={4}>
-          <Paper sx={{ p: 3, textAlign: 'center', height: '100%', borderRadius: '10px', boxShadow: 3 }}>
-            <ThumbUpAltIcon sx={{ fontSize: 48, color: 'rgb(233, 30, 99)' }} />
-            <Typography variant="h6" sx={{ mt: 2, mb: 1, fontFamily: 'Oswald, sans-serif' }}>
+          <Paper component="article" sx={{ p: 3, textAlign: 'center', height: '100%', borderRadius: '10px', boxShadow: 3 }}>
+            <ThumbUpAltIcon        aria-label="Customer Satisfaction Icon" sx={{ fontSize: 48, color: 'rgb(233, 30, 99)' }} />
+            <Typography   variant="h5" sx={{ mt: 2, mb: 1, fontFamily: 'Oswald, sans-serif' }}>
               Customer Satisfaction
             </Typography>
             <Typography sx={{ textAlign: 'center', fontFamily: 'Roboto, sans-serif' }}>
@@ -51,9 +51,9 @@ const Ratings = () => {
         </Grid>
 
         <Grid item xs={12} sm={6} md={4}>
-          <Paper sx={{ p: 3, textAlign: 'center', height: '100%', borderRadius: '10px', boxShadow: 3 }}>
-            <StarIcon sx={{ fontSize: 48, color: 'rgb(233, 30, 99)' }} />
-            <Typography variant="h6" sx={{ mt: 2, mb: 1, fontFamily: 'Oswald, sans-serif' }}>
+          <Paper component="article"  sx={{ p: 3, textAlign: 'center', height: '100%', borderRadius: '10px', boxShadow: 3 }}>
+            <StarIcon     aria-label="Expertise and Trust Icon" sx={{ fontSize: 48, color: 'rgb(233, 30, 99)' }} />
+            <Typography variant="h5" sx={{ mt: 2, mb: 1, fontFamily: 'Oswald, sans-serif' }}>
               Expertise and Trust
             </Typography>
             <Typography sx={{ textAlign: 'center', fontFamily: 'Roboto, sans-serif' }}>
@@ -63,9 +63,9 @@ const Ratings = () => {
         </Grid>
 
         <Grid item xs={12} sm={6} md={4}>
-          <Paper sx={{ p: 3, textAlign: 'center', height: '100%', borderRadius: '10px', boxShadow: 3 }}>
-            <GroupIcon sx={{ fontSize: 48, color: 'rgb(233, 30, 99)' }} />
-            <Typography variant="h6" sx={{ mt: 2, mb: 1, fontFamily: 'Oswald, sans-serif' }}>
+          <Paper component="article" sx={{ p: 3, textAlign: 'center', height: '100%', borderRadius: '10px', boxShadow: 3 }}>
+            <GroupIcon    aria-label="Community Support Icon" sx={{ fontSize: 48, color: 'rgb(233, 30, 99)' }} />
+            <Typography variant="h5" sx={{ mt: 2, mb: 1, fontFamily: 'Oswald, sans-serif' }}>
               Community Support
             </Typography>
             <Typography sx={{ textAlign: 'center', fontFamily: 'Roboto, sans-serif' }}>

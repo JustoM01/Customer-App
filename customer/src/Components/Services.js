@@ -10,16 +10,19 @@ const services = [
     title: 'Steam Treatment',
     description: 'Our carpet steaming service effectively removes deep-seated dirt, stains, and allergens from your vehicle’s carpets. Using steam cleaning technology, we sanitize and refresh the carpets, leaving them clean, soft, and odor-free.',
     image: Hero,
+    alt: 'Steam treatment service showing clean carpets',
   },
   {
     title: 'Interior Detailing',
     description: 'Experience a fresh and clean interior with our detailed interior cleaning service. We deep clean all interior surfaces, including seats, carpets, dashboard, and door panels. This service removes dirt, dust, and allergens, leaving your car’s interior spotless and rejuvenated.',
     image: Hero,
+    alt: 'Interior detailing service for cars',
   },
   {
     title: 'Exterior Cleaning',
     description: 'Our exterior detailing service goes beyond a simple wash. We meticulously clean and polish every exterior surface of your vehicle, including the body, windows, wheels, and tires. This enhances the appearance and protects your car from environmental elements.',
     image: Hero,
+    alt: 'Exterior cleaning service for vehicles',
   },
 ];
 
@@ -73,6 +76,7 @@ const Services = () => {
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Zoom>
               <Card 
+                   component="article" 
                 sx={{
                   maxWidth: 350,
                   mx: 'auto',
@@ -92,7 +96,7 @@ const Services = () => {
                   alt={service.title}
                 />
                 <CardContent>
-                  <ServiceTitle variant="h6">
+                  <ServiceTitle variant="h5">
                     {service.title}
                   </ServiceTitle>
                   <ServiceDescription>

@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Grid, styled, MenuItem, Select, InputLabel, FormControl, Alert, Paper } from '@mui/material';
 import axios from 'axios';
 
-
-
-// prestyled typography i made
+// Pre-styled typography component
 const HeroText = styled(Typography)({
   color: 'rgb(233, 30, 99)',
   fontFamily: 'Oswald, sans-serif',
@@ -25,7 +23,7 @@ const QuoteForm = styled(Box)({
 });
 
 const QuotePageContainer = styled(Box)({
-  marginTop:'37px',
+  marginTop: '37px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -39,7 +37,7 @@ const QuotePageContainer = styled(Box)({
   '@keyframes fade-in': {
     '0%': { opacity: 0 },
     '100%': { opacity: 1 },
-  }
+  },
 });
 
 const InfoSection = styled(Paper)({
@@ -50,12 +48,8 @@ const InfoSection = styled(Paper)({
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
 });
 
-
-
 const Quote = () => {
-
-
-  // setting usestate dynamic varaiables to save user data for api call
+  // setting usestate dynamic variables to save user data for API call
   const [serviceName, setServiceName] = useState('');
   const [vehicleType, setVehicleType] = useState('');
   const [email, setEmail] = useState('');
@@ -74,10 +68,9 @@ const Quote = () => {
         vehicleType,
         email
       });
-
-      // after successful api call update email var and console response
-            // after successful api call update email var and console response
-      console.log(response)
+      if (process.env.NODE_ENV === 'development') {
+        console.log(response);
+      }
       setEmailSent(true);
     } catch (err) {
       setError(err.response.data.error);
@@ -86,7 +79,7 @@ const Quote = () => {
 
   return (
     <QuotePageContainer>
-      <HeroText sx={{marginTop:'13px'}} variant="h2" component="h1" gutterBottom>
+      <HeroText sx={{ marginTop: '13px' }} variant="h2" component="h1" gutterBottom>
         Get a Quote
       </HeroText>
       <InfoSection>
@@ -101,11 +94,11 @@ const Quote = () => {
         <Grid item xs={12} sm={10} md={8} lg={6}>
           <QuoteForm component="form" onSubmit={handleSubmit}>
             <FormControl fullWidth required sx={{ backgroundColor: 'white', borderRadius: '4px' }}>
-              <InputLabel>Service Type</InputLabel>
+              <InputLabel>Service </InputLabel>
               <Select
                 value={serviceName}
                 onChange={(e) => setServiceName(e.target.value)}
-                label="Service Type"
+                label="Service "
               >
                 <MenuItem value="Basic Clean">Basic Clean</MenuItem>
                 <MenuItem value="Tire Rotation">Tire Rotation</MenuItem>
@@ -140,12 +133,13 @@ const Quote = () => {
             >
               Get Quote
             </Button>
-          
 
-          {/* dynamic renders to display */}
-          
-          {/* dynamic renders to display */}
-          {/* dynamic renders to display */}
+            {/* New message explaining the starting price */}
+            <Typography sx={{ mt: 2, textAlign: 'center', color: 'gray' }}>
+              *The quote provided is a starting price. Please contact us for more details or specific services.
+            </Typography>
+
+            {/* Dynamic renders to display */}
             {emailSent && (
               <Alert severity="success" sx={{ mt: 2, width: '100%', textAlign: 'center' }}>
                 Quote has been sent to your email!
@@ -159,7 +153,6 @@ const Quote = () => {
           </QuoteForm>
         </Grid>
       </Grid>
-   
     </QuotePageContainer>
   );
 };
