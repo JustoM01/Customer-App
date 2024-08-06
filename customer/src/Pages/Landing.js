@@ -9,24 +9,24 @@ const Hero = require('./2Hero.mp4');
 const HeroText = styled(Typography)(({ theme }) => ({
 color:'rgb(233, 30, 99)',
   fontFamily: 'Oswald, sans-serif',
-  fontSize: '3rem',
+
   textAlign: 'center',
-  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)', // Added text shadow for readability
+  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)', 
   [theme.breakpoints.down('sm')]: {
     fontSize: '2rem',
   },
 }));
 
-// Styled component for overlay
+// Styled comp for overlay
 const Overlay = styled(Box)(({ theme }) => ({
   position: 'absolute',
   top: 0,
   left: 0,
   width: '100%',
   height: '100%',
-  background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))', // Gradient overlay
+
   display: 'flex',
-  flexDirection: 'column', // Stack text and button vertically
+  flexDirection: 'column', // Stacks my text and button vertically
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
@@ -55,7 +55,7 @@ const Landing = () => {
           <Box
             sx={{
               width: '100%',
-              height: '50vh', // Adjusted height for the video section
+              height: '50vh', 
               position: 'relative',
               overflow: 'hidden',
             }}
@@ -73,14 +73,14 @@ const Landing = () => {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                opacity: '0.7', // Slightly adjusted opacity for better visibility
+                opacity: '0.7', 
               }}
             />
-            <Overlay>
-              <HeroText variant="h2" component="h1" gutterBottom>
+            <Overlay  >
+              <HeroText variant='h1' component="h1" gutterBottom>
                 DETAIL DIRECT
               </HeroText>
-              <Typography variant="h6" sx={{ color: 'white', mt: 1, mr:2 }}>
+              <Typography variant="h4" component="h4" sx={{ color: 'white', mt: 1, mr:2 }}>
                 Experience the Best in Car Detailing
               </Typography>
               <CTAButton variant="contained" href="#">
@@ -91,17 +91,17 @@ const Landing = () => {
         </Grid>
       </Grid>
 
-      {/* About and services Sections */}
+      {/* Ratings and services Sections */}
       <Grid container spacing={4} justifyContent="center">
         {/* Ratings */}
-        <Grid item xs={10} sm={10} md={10}>
+        <Grid item xs={12} sm={10} md={8}>
           <Box sx={{ minHeight: '200px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Ratings />
           </Box>
         </Grid>
 
         {/* Services Section */}
-        <Grid item xs={10} sm={10} md={10}>
+        <Grid item xs={12} sm={10} md={8}>
           <Box sx={{ minHeight: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Services />
           </Box>

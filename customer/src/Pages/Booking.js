@@ -27,7 +27,7 @@ const BookingPageContainer = styled(Box)({
   justifyContent: 'center',
   alignItems: 'center',
   minHeight: '100vh',
-  marginTop: '64px',
+  marginTop: '78px',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   padding: '30px',
@@ -124,7 +124,8 @@ const Booking = () => {
     setBookingResult(null);
 
     try {
-      const response = await axios.post('/api/booking/book', {
+     const response = 
+      await axios.post('/api/booking/book', {
         serviceName,
         vehicleType,
         customerName,
@@ -132,7 +133,7 @@ const Booking = () => {
         bookingDate,
       });
 
-      console.log('Booking API Response:', response.data); // Log the entire API response
+    //  console.log('Booking API Response:', response.data); // Log the entire API response
 
 
       // after res set setBookingResult to store data

@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, styled, Card, CardContent, Select, MenuItem, FormControl, InputLabel, Button, CardMedia } from '@mui/material';
+import {
+  Box,
+  Typography,
+  styled,
+  Card,
+  CardContent,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Button,
+  CardMedia,
+} from '@mui/material';
+
+
+// link and usenav to help redirect and nav
+import {  useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import hero from './Hero.jpg'; // Importing image directly
 
 const ServiceCard = styled(Card)({
   display: 'flex',
-  flexDirection: 'row', // Changed  to row for horizontal alignment
+  flexDirection: 'row', // Horizontal alignment
   backgroundColor: 'rgba(255, 255, 255, 0.9)',
   borderRadius: '8px',
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
@@ -24,10 +40,10 @@ const ServicePageContainer = styled(Box)({
   backgroundColor: '#f0f0f0',
   padding: '20px',
   paddingTop: '40px',
-  marginTop:'20px'
+  marginTop: '20px',
 });
 
-const FiltersContainer = styled(Box)(({ theme }) => ({
+const FiltersContainer = styled(Box)({
   width: '50%',
   marginRight: '20px',
   marginBottom: '20px',
@@ -35,7 +51,7 @@ const FiltersContainer = styled(Box)(({ theme }) => ({
     width: '100%',
     marginRight: 0,
   },
-}));
+});
 
 const ScrollableDiv = styled(Box)({
   display: 'flex',
@@ -45,7 +61,6 @@ const ScrollableDiv = styled(Box)({
   backgroundColor: '#fff',
   borderRadius: '8px',
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
- 
   maxHeight: '60vh',
   width: '50%',
   '@media (max-width: 768px)': {
@@ -54,24 +69,36 @@ const ScrollableDiv = styled(Box)({
   },
 });
 
+
+
+
 const OurServices = () => {
-
-
-
-  //  usestate vars used to store services after api call
-  
-  //  usestate vars used to store services after api call
-  //  usestate vars used to store services after api call
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState('');
   const [filteredServices, setFilteredServices] = useState([]);
+  const navigate = useNavigate(); // Use useNavigate hook to get navigation function
+
+
+
+
+  // func to redirect after button clicked
+  const bookButton = ()=>{
+    navigate('/booking');
+  }
 
   useEffect(() => {
     const fetchServices = async () => {
       try {
         const response = await axios.get('/api/services/services');
-        setServices(response.data);
-        setFilteredServices(response.data); // Initializes filtered services with all services
+        // Ensure response.data is an array
+        if (Array.isArray(response.data)) {
+          setServices(response.data);
+          setFilteredServices(response.data); // Initializes filtered services with all services
+        } else {
+          console.error('Invalid data format received from API');
+          setServices([]);
+          setFilteredServices([]);
+        }
       } catch (err) {
         console.log('Failed to fetch services');
       }
@@ -85,14 +112,6 @@ const OurServices = () => {
     filterServices(event.target.value);
   };
 
-
-
-
-  // helper function used to update services if one selected or not
-  
-  // helper function used to update services if one selected or not
-  // helper function used to update services if one selected or not
-
   const filterServices = (selectedService) => {
     if (selectedService === '') {
       setFilteredServices(services);
@@ -105,17 +124,19 @@ const OurServices = () => {
   return (
     <ServicePageContainer>
       <FiltersContainer>
-        <Typography variant="h4" sx={{ fontFamily: 'Oswald, sans-serif', color: 'rgb(233, 30, 99)', marginTop: '45px' }} gutterBottom>
+        <Typography
+          variant="h4"
+          sx={{ fontFamily: 'Oswald, sans-serif', color: 'rgb(233, 30, 99)', marginTop: '45px' }}
+          gutterBottom
+        >
           Select a Service
         </Typography>
         <FormControl fullWidth sx={{ marginBottom: '20px' }}>
-          <InputLabel variant="filled" sx={{ outlineColor: 'red', color: 'black' }}>Service</InputLabel>
-          <Select
-            value={selectedService}
-            onChange={handleServiceChange}
-            label="Service"
-          >
-            <MenuItem  value="">All Services</MenuItem>
+          <InputLabel variant="filled" sx={{ outlineColor: 'red', color: 'black' }}>
+            Service
+          </InputLabel>
+          <Select value={selectedService} onChange={handleServiceChange} label="Service">
+            <MenuItem value="">All Services</MenuItem>
             {services.map((service) => (
               <MenuItem key={service.id} value={service.id}>
                 {service.name}
@@ -128,15 +149,17 @@ const OurServices = () => {
       <ScrollableDiv>
         {filteredServices.map((service) => (
           <ServiceCard key={service.id}>
-            <CardContent sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', sm: 'column', md: 'row' },
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              width: '100%',
-              paddingX: { xs: '10px', sm: '20px' },
-              paddingY: { xs: '10px', sm: '20px' },
-            }}>
+            <CardContent
+              sx={{
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'row' },
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%',
+                paddingX: { xs: '10px', sm: '20px' },
+                paddingY: { xs: '10px', sm: '20px' },
+              }}
+            >
               <CardMedia
                 component="img"
                 image={hero} // Use imported image directly
@@ -145,19 +168,31 @@ const OurServices = () => {
                   width: { xs: '100%', sm: '50%' },
                   height: { xs: 'auto', sm: '170px' },
                   borderRadius: '8px',
-                  marginBottom: { xs: '20px', sm: '0', md:'5px' },
-                  marginTop:{md:'10px'}
+                  marginBottom: { xs: '20px', sm: '0' },
+                  marginTop: { md: '10px' },
                 }}
               />
               <Box sx={{ flex: 1, marginLeft: { xs: 0, sm: '20px' } }}>
                 <Typography variant="h5" component="h2" gutterBottom>
                   {service.name}
                 </Typography>
-                <Typography variant="body1" color="textSecondary" sx={{ marginBottom: '20px' }}>
+                <Typography variant="body1" color="textSecondary" sx={{ marginBottom: '10px' }}>
                   {service.description}
                 </Typography>
-                <Button sx={{ backgroundColor: 'rgb(233, 30, 99)', color: 'white', width: '100%', marginTop: '20px' }}>
-                  Book
+                <Typography variant="h6" sx={{ color: 'rgb(233, 30, 99)' }}>
+                  Starting at ${service.price}
+                </Typography>
+                <Button
+                  sx={{
+                    backgroundColor: 'rgb(233, 30, 99)',
+                    color: 'white',
+                    width: '100%',
+                    marginTop: '20px',
+                  }}
+
+                  onClick={bookButton}
+                >
+                  Book Now
                 </Button>
               </Box>
             </CardContent>

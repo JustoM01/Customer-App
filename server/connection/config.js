@@ -5,17 +5,14 @@ const Sequelize = require('sequelize');
 require('dotenv').config();
 // Create a connection object
 const sequelize = new Sequelize(
-    // Database name
     process.env.DB_NAME,
-    // User
     process.env.DB_USER,
-    //password
     process.env.DB_PASSWORD,
     {
-        // Database location
-        host: 'localhost',
-        dialect: 'mysql',
-        port: 3306
+      host: process.env.DB_HOST || 'localhost',
+      dialect: 'mysql',
+      port: process.env.DB_PORT || 3306,
+      logging: process.env.NODE_ENV === 'development' ? console.log : false
     }
-);
+  );
 module.exports = sequelize;

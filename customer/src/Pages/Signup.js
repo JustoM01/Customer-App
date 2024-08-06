@@ -59,8 +59,9 @@ const SignUp = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('/api/user', { name, email, password, phoneNumber, address });
-      console.log('Sign Up Response:', response.data);
+      //const response =   
+      await axios.post('/api/user', { name, email, password, phoneNumber, address });
+     // console.log('Sign Up Response:', response.data)
       setSuccess('Sign up successful! Please log in.');
     } catch (err) {
       console.error('Sign Up Error:', err.response?.data);
