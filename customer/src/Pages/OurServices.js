@@ -89,16 +89,15 @@ const OurServices = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get('/api/services/services');
+
+
+        // passing env var to route for build test deployment
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/services/services`);
         // Ensure response.data is an array
-        if (Array.isArray(response.data)) {
+     
           setServices(response.data);
           setFilteredServices(response.data); // Initializes filtered services with all services
-        } else {
-          console.error('Invalid data format received from API');
-          setServices([]);
-          setFilteredServices([]);
-        }
+      
       } catch (err) {
         console.log('Failed to fetch services');
       }

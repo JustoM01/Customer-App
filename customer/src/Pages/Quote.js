@@ -63,7 +63,7 @@ const Quote = () => {
     setEmailSent(false);
 
     try {
-      const response = await axios.post('/api/estimate/generate-quote', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/estimate/generate-quote`, {
         name: serviceName,
         vehicleType,
         email

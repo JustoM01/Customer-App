@@ -59,8 +59,10 @@ const SignUp = () => {
     setSuccess('');
 
     try {
+
+     // for debugging and logs only
       //const response =   
-      await axios.post('/api/user', { name, email, password, phoneNumber, address });
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/user`, { name, email, password, phoneNumber, address });
      // console.log('Sign Up Response:', response.data)
       setSuccess('Sign up successful! Please log in.');
     } catch (err) {
