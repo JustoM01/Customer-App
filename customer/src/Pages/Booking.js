@@ -101,7 +101,7 @@ const Booking = () => {
   useEffect(() => {
     const fetchBookedDates = async () => {
       try {
-        const response = await axios.get('/api/booking/booked-dates');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/booking/booked-dates`);
         setBookedDates(response.data.bookedDates.map(date => new Date(date)));
       } catch (err) {
         console.error('Failed to fetch booked dates:', err);
@@ -125,7 +125,7 @@ const Booking = () => {
 
     try {
      const response = 
-      await axios.post('/api/booking/book', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/booking/book`, {
         serviceName,
         vehicleType,
         customerName,

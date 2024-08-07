@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const serviceType = require('../../models/serviceType')
-
+const Price = require('../../models/Price')
 
 
 // Route to create a new service type
@@ -25,7 +25,15 @@ router.post('/', async (req, res) => {
 
   router.get('/services', async(req,res)=>{
     try{
-    const allServices = await serviceType.findAll({});
+    const allServices = await serviceType.findAll({
+      include: [
+        {
+          model: Price,
+          as: 'Prices',
+          attributes: ['vehicleType', 'basePrice', 'multiplier'],
+        },
+      ],
+    });
     res.status(200).json(allServices)}catch(err){
       res.status.json(err)
     }
